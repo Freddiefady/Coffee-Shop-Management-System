@@ -18,6 +18,14 @@
     </div>
 </section>
 
+<div class="container">
+    @if (session('success'))
+    <div class="alert {{ session('success') ? 'alert-success' : 'alert-info' }} alert-dismissible fade show">
+        {{ session('success') }}
+    </div>
+    @endif
+</div>
+
 <section class="ftco-section">
     <div class="container">
         <div class="row">
@@ -27,7 +35,7 @@
                         alt="Colorlib Template"></a>
             </div>
             <div class="col-lg-6 product-details pl-md-5 ftco-animate">
-                <h3>{{ $product->name }}</h3>
+                <h3 class="text-white">{{ $product->name }}</h3>
                 <p class="price"><span>${{ $product->price }}</span></p>
                 <p>{{ $product->description }}</p>
                 <div class="row mt-4">
@@ -60,7 +68,16 @@
                         </span>
                     </div>
                 </div>
-                <p><a href="cart.html" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
+                <form method="POST" action="{{ route('cart.store', $product->id) }}">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    @if ($checkCart == 0)
+                        <button type="submit" class="btn py-3 px-5">Add to Cart</button>
+                    @else
+                        <button disabled class="btn py-3 px-5">Added to Cart</button>
+                    @endif
+                </form>
             </div>
         </div>
     </div>

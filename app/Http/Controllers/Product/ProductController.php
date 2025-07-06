@@ -19,6 +19,11 @@ class ProductController extends Controller
         ->orderBy('id', 'desc')
         ->get();
 
-        return view('products.single-product', compact('product', 'relatedProducts'));
+        // Check if the product is already in the cart
+        $checkCart = auth()->user()->carts()->where('product_id', $product->id)
+        ->where('user_id', auth()->id())
+        ->exists();
+        
+        return view('products.single-product', compact('product', 'relatedProducts', 'checkCart'));
     }
 }
