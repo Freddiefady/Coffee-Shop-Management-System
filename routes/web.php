@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Product\CartController;
 use App\Http\Controllers\Product\CheckoutController;
@@ -34,4 +35,6 @@ Route::group([
 
         Route::get('/pay', 'pay')->name('pay');
         Route::get('/success', 'success')->name('pay.success');
-});
+    });
+    //? Booking functionlity
+    Route::post('/booking', BookingController::class)->name('booking.store');

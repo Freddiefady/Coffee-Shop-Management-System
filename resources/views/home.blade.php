@@ -85,41 +85,70 @@
                     </div>
                 </div>
             </div>
+
+   <div class="container">
+        @if (session('success'))
+        <div class="alert {{ session('success') ? 'alert-success' : 'alert-info' }} alert-dismissible fade show">
+            {{ session('success') }}
+        </div>
+        @endif
+    </div>
+
             <div class="book p-4">
                 <h3>Book a Table</h3>
-                <form action="#" class="appointment-form">
+                <form action="{{ route('booking.store') }}" method="POST" class="appointment-form">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                     <div class="d-md-flex">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="First Name">
+                            <input type="text" name="first_name" class="form-control" placeholder="First Name">
+                           @if($errors->has('first_name'))
+                               <p class="alert alert-warning">{{ $errors->first('first_name') }}</p>
+                            @endif
                         </div>
                         <div class="form-group ml-md-4">
-                            <input type="text" class="form-control" placeholder="Last Name">
+                            <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+                              @if($errors->has('last_name'))
+                               <p class="alert alert-warning">{{ $errors->first('last_name') }}</p>
+                            @endif
                         </div>
                     </div>
                     <div class="d-md-flex">
                         <div class="form-group">
                             <div class="input-wrap">
                                 <div class="icon"><span class="ion-md-calendar"></span></div>
-                                <input type="text" class="form-control appointment_date" placeholder="Date">
+                                <input type="text" name="date" class="form-control appointment_date" placeholder="Date">
+                                 @if($errors->has('date'))
+                               <p class="alert alert-warning">{{ $errors->first('date') }}</p>
+                            @endif
                             </div>
                         </div>
                         <div class="form-group ml-md-4">
                             <div class="input-wrap">
                                 <div class="icon"><span class="ion-ios-clock"></span></div>
-                                <input type="text" class="form-control appointment_time" placeholder="Time">
+                                <input type="text" name="time" class="form-control appointment_time" placeholder="Time">
+                                @if($errors->has('time'))
+                               <p class="alert alert-warning">{{ $errors->first('time') }}</p>
+                            @endif
                             </div>
                         </div>
                         <div class="form-group ml-md-4">
-                            <input type="text" class="form-control" placeholder="Phone">
+                            <input type="text" name="phone" class="form-control" placeholder="Phone">
+                             @if($errors->has('phone'))
+                               <p class="alert alert-warning">{{ $errors->first('phone') }}</p>
+                            @endif
                         </div>
                     </div>
                     <div class="d-md-flex">
                         <div class="form-group">
-                            <textarea name="" id="" cols="30" rows="2" class="form-control"
+                            <textarea name="message" id="" cols="30" rows="2" class="form-control"
                                 placeholder="Message"></textarea>
+                                @if($errors->has('message'))
+                               <p class="alert alert-warning">{{ $errors->first('message') }}</p>
+                            @endif
                         </div>
                         <div class="form-group ml-md-4">
-                            <input type="submit" value="Appointment" class="btn btn-white py-3 px-4">
+                            <button type="submit" value="Appointment" class="btn btn-white py-3 px-4">
                         </div>
                     </div>
                 </form>
