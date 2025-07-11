@@ -5,10 +5,6 @@ use App\Http\Controllers\Product\CartController;
 use App\Http\Controllers\Product\CheckoutController;
 use App\Http\Controllers\Product\ProductController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -30,10 +26,10 @@ Route::group([
     'prefix' => '/checkout',
     'as' => 'checkout.',
     'controller' => CheckoutController::class,
-   
+    'middleware' => 'auth'
     ],function () {
         Route::get('/', 'index')->name('index');
-        Route::post('/prepare', 'store')->name('store');
+        Route::post('/preparee', 'store')->name('store');
         Route::post('/prepare', 'progress')->name('process');
 
         Route::get('/pay', 'pay')->name('pay');
