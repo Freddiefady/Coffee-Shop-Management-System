@@ -6,6 +6,7 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 
 class CartController extends Controller
 {
@@ -20,7 +21,7 @@ class CartController extends Controller
         $totalPrice = $carts->sum(function ($cart) {
             return $cart->product->price;
         });
-        
+
         return view('cart.cart', compact('carts' ,'totalPrice'));
     }
     /**
@@ -29,9 +30,9 @@ class CartController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            auth()->user()->carts()->create([
+            auth('web')->user()->carts()->create([
                 'product_id' => $request->product_id,
-                'user_id' => auth()->id()
+                'user_id' => auth('web')->id()
             ]);
         });
 
@@ -41,7 +42,7 @@ class CartController extends Controller
     /**
      * Remove the specified item from the cart.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         $cart = Cart::where('product_id', $id)
             ->where('user_id', auth()->id())

@@ -96,7 +96,11 @@
                     </p>
                 </div>
                 @if ($carts->count() > 0)
-                    <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
+                    <form method="POST" action="{{ route('checkout.store') }}">
+                        @csrf
+                        <input type="hidden" name="price" value="{{ $totalPrice }}">
+                        <p class="text-center"><button class="btn btn-primary py-3 px-4">Proceed to Checkout</button>
+                    </form>
                 @else
                     <p class="text-center">you cannot checkout because you have no product.</p>
                 @endif
