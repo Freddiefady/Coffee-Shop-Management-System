@@ -11,7 +11,7 @@ class BookingController extends Controller
     public function __invoke(BookingRequest $request)
     {
         DB::transaction(function ()  use ($request){
-            $bookTable = Booking::create($request->validated());
+            Booking::create($request->validated());
         });
 
         return redirect()->back()->with('success', 'you booked now successfully!');
