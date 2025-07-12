@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Product\CartController;
 use App\Http\Controllers\Product\CheckoutController;
@@ -10,7 +11,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/single-product/{name}', ProductController::class)->name('product-single');
+Route::get('/single-product/{name}', ProductController::class)->name('product-single')
+    ->middleware('auth');
 // This route handles the cart functionality
 Route::group([
     'prefix' => 'cart',
@@ -38,3 +40,5 @@ Route::group([
     });
     //? Booking functionlity
     Route::post('/booking', BookingController::class)->name('booking.store');
+    //? Menu functionality
+    Route::get('/menu', MenuController::class)->name('menu.index');
