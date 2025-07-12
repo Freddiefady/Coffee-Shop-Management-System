@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\Users\BookingController;
 use App\Http\Controllers\Product\CartController;
-use App\Http\Controllers\Product\CheckoutController;
+use App\Http\Controllers\Users\OrdersController;
 use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Product\CheckoutController;
 
 Auth::routes();
 
@@ -39,6 +40,9 @@ Route::group([
         Route::get('/success', 'success')->name('pay.success');
     });
     //? Booking functionlity
-    Route::post('/booking', BookingController::class)->name('booking.store');
+    Route::get('/user/booking', [BookingController::class, 'index'])->name('user.booking.index');
+    Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
     //? Menu functionality
     Route::get('/menu', MenuController::class)->name('menu.index');
+    //? Order's User functionality
+    Route::get('/user/orders', OrdersController::class)->name('user.orders');
