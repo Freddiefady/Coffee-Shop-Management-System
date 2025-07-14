@@ -27,6 +27,7 @@
                             <th>date</th>
                             <th>time</th>
                             <th>Status</th>
+                            <th>Write Review</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +45,13 @@
 
                             <td class="total">${{ $booking->time }}</td>
                             <td class="total">{{ $booking->status }}</td>
+                            <td class="total">
+                                @if ($booking->status === "booked")
+                                    <a href="{{ route('review.index') }}" class="btn btn-primary">Write Review</a>
+                                @else
+                                    <p class="btn btn-primary">Not availbale just yet.</p>
+                                @endif
+                            </td>
                         </tr>
                         @empty
                         <tr class="text-center">

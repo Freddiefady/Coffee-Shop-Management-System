@@ -27,6 +27,7 @@
                             <th>Email</th>
                             <th>Price</th>
                             <th>Status</th>
+                            <th>Write Review</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +45,13 @@
 
                             <td class="total">${{ $order->price }}</td>
                             <td class="total">{{ $order->status }}</td>
+                            <td class="total">
+                                @if ($order->status === "delivery")
+                                    <a href="{{ route('review.index') }}" class="btn btn-primary">Write Review</a>
+                                @else
+                                    <p class="btn btn-primary">Not availbale just yet.</p>
+                                @endif
+                            </td>
                         </tr>
                         @empty
                         <tr class="text-center">
