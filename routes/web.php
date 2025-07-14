@@ -7,6 +7,7 @@ use App\Http\Controllers\Product\CartController;
 use App\Http\Controllers\Users\OrdersController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\CheckoutController;
+use App\Http\Controllers\Users\ReviewsController;
 
 Auth::routes();
 
@@ -39,10 +40,13 @@ Route::group([
         Route::get('/pay', 'pay')->name('pay');
         Route::get('/success', 'success')->name('pay.success');
     });
-    //? Booking functionlity
-    Route::get('/user/booking', [BookingController::class, 'index'])->name('user.booking.index');
-    Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
-    //? Menu functionality
-    Route::get('/menu', MenuController::class)->name('menu.index');
-    //? Order's User functionality
-    Route::get('/user/orders', OrdersController::class)->name('user.orders');
+//? Booking functionlity
+Route::get('/user/booking', [BookingController::class, 'index'])->name('user.booking.index');
+Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+//? Menu functionality
+Route::get('/menu', MenuController::class)->name('menu.index');
+//? Order's User functionality
+Route::get('/user/orders', OrdersController::class)->name('user.orders');
+//? write reviews for users
+Route::get('/user/reviews', [ReviewsController::class, 'index'])->name('review.index');
+Route::post('/user/reviews', [ReviewsController::class, 'store'])->name('review.store');
