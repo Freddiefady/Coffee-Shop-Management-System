@@ -54,12 +54,14 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="{{ route('menu.index') }}" class="nav-link">Menu</a></li>
-                        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="{{ route('services') }}" class="nav-link">Services</a></li>
+                        <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">About</a></li>
 
-                        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                        <li class="nav-item cart"><a href="{{ route('cart.index') }}" class="nav-link"><span
-                                    class="icon icon-shopping_cart"></span></a></li>
+                        <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+                      @auth
+                          <li class="nav-item cart"><a href="{{ route('cart.index') }}" class="nav-link"><span
+                                      class="icon icon-shopping_cart"></span></a></li>
+                      @endauth
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
@@ -76,7 +78,7 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                                {{ auth()->user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
