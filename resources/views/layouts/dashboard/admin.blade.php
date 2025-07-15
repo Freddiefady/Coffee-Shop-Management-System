@@ -24,13 +24,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav side-nav">
-                        {{-- @auth('admin') --}}
+                        @auth('admin')
                         <li class="nav-item">
                             <a class="nav-link" style="margin-left: 20px;" href="{{ route('admin.home') }}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        {{-- @endauth --}}
+                        @endauth
                         <li class="nav-item">
                             <a class="nav-link" href="admins.html" style="margin-left: 20px;">Admins</a>
                         </li>
@@ -68,11 +68,12 @@
                                 {{ auth('admin')->user()?->name }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.destroy') }}" onclick="event.preventDefault();
-                                   document.getElementById('destroy-form').submit();
-                                   ">Logout</a>
-                        </li>
-                        <form action="{{ route('admin.destroy') }}" method="POST" id="destroy-form">
+                                <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
+                            class="d-none">
                             @csrf
                         </form>
                         @endauth

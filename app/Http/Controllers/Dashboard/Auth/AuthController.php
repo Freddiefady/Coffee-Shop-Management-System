@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest:admin')->except('logout');
-    }
-
     public function index()
     {
         return view('dashboard.auth.login');
@@ -33,7 +28,7 @@ class AuthController extends Controller
 
     public function destroy()
     {
-        Auth::guard('web')->logout();
+        Auth::guard('admin')->logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
         return to_route('admin.index')->with('success', __('auth.logout_message'));

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.admin')
+@extends('layouts.dashboard.auth')
 @section('content')
 <div class="container-fluid">
     <div class="row">
