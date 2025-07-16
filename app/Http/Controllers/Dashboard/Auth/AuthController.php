@@ -14,10 +14,10 @@ class AuthController extends Controller
         return view('dashboard.auth.login');
     }
 
-    public function store(Request $request)
+    public function store(LoginAdminRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        if (auth('admin')->attempt($credentials, $request?->remember_me)) {
+        if (auth('admin')->attempt($credentials, $request->remember_me)) {
             $request->session()->regenerate();
 
             return redirect()->intended(route('admin.home'))->with('success', __('auth.login_message'));

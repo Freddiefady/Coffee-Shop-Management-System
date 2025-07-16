@@ -24,8 +24,8 @@ class LoginAdminRequest extends FormRequest
     {
         return [
             'email' => 'required|email|max:30|unique:admins,email',
-            'password' => ['required', 'string', Rules\Password::default()],
-            'remember_me' => 'boolean'
+            'password' => 'required|string|min:8',
+            'remember_me' => 'nullable|boolean'
         ];
     }
 }
