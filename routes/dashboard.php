@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\admins\AdminController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -16,3 +17,5 @@ Route::group([
     Route::post('/logout', 'destroy')->name('logout');
 
 });
+Route::resource('/admin/admins', AdminController::class)
+        ->only(['index', 'create', 'store']);

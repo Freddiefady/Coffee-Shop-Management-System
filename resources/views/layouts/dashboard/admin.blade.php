@@ -32,7 +32,7 @@
                         </li>
                         @endauth
                         <li class="nav-item">
-                            <a class="nav-link" href="admins.html" style="margin-left: 20px;">Admins</a>
+                            <a class="nav-link" href="{{ route('admins.index') }}" style="margin-left: 20px;">Admins</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../orders-admins/show-orders.html"

@@ -14,7 +14,7 @@ class AuthController extends Controller
         return view('dashboard.auth.login');
     }
 
-    public function store(LoginAdminRequest $request)
+    public function store(Request $request)
     {
         $credentials = $request->only('email', 'password');
         if (auth('admin')->attempt($credentials, $request->remember_me)) {
