@@ -12,14 +12,23 @@
                         <div class="form-outline mb-4 mt-4">
                             <input type="email" name="email" id="form2Example1" class="form-control"
                                 placeholder="email" />
+                                @error('email')
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
                         </div>
                         <div class="form-outline mb-4">
                             <input type="text" name="name" id="form2Example1" class="form-control"
                                 placeholder="username" />
+                                @error('name')
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
                         </div>
                         <div class="form-outline mb-4">
                             <input type="password" name="password" id="form2Example1" class="form-control"
                                 placeholder="password" />
+                                @error('password')
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
                         </div>
                         <!-- Submit button -->
                         <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">create</button>
