@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\admins\AdminController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\Orders\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/home', HomeController::class)->name('admin.home')->middleware('auth:admin');
@@ -17,5 +18,9 @@ Route::group([
     Route::post('/logout', 'destroy')->name('logout');
 
 });
+
 Route::resource('/admin/admins', AdminController::class)
         ->only(['index', 'create', 'store']);
+
+Route::resource('/admin/orders', OrderController::class)
+        ->only(['index', 'edit', 'update','destroy']);

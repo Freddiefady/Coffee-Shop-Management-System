@@ -35,7 +35,7 @@
                             <a class="nav-link" href="{{ route('admins.index') }}" style="margin-left: 20px;">Admins</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../orders-admins/show-orders.html"
+                            <a class="nav-link" href="{{ route('orders.index') }}"
                                 style="margin-left: 20px;">Orders</a>
                         </li>
                         <li class="nav-item">
