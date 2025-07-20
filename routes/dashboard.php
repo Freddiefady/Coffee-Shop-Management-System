@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Dashboard\admins\AdminController;
-use App\Http\Controllers\Dashboard\Auth\AuthController;
-use App\Http\Controllers\Dashboard\HomeController;
-use App\Http\Controllers\Dashboard\Orders\OrderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\Auth\AuthController;
+use App\Http\Controllers\Dashboard\admins\AdminController;
+use App\Http\Controllers\Dashboard\Orders\OrderController;
+use App\Http\Controllers\Dashboard\Products\ProductController;
 
 Route::get('/admin/home', HomeController::class)->name('admin.home')->middleware('auth:admin');
 
@@ -24,3 +25,6 @@ Route::resource('/admin/admins', AdminController::class)
 
 Route::resource('/admin/orders', OrderController::class)
         ->only(['index', 'edit', 'update','destroy']);
+
+Route::resource('/admin/products', ProductController::class)
+        ->only(['index', 'create', 'store','destroy']);
