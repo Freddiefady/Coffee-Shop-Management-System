@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Dashboard\Products;
 
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Dashboard\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -28,9 +31,23 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        // Get validated data
+        $validated = $request->validated();
+
+        // Handle image upload
+        if (isset($validated['image'])) {
+            $image = $validated['image'];
+            $fileName = Str::uuid() . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('assets/images/'), $fileName);
+            $validated['image'] = $fileName;
+        }
+
+        // Create product with image
+        Product::create($validated);
+
+        return redirect()->back()->with('success', 'Product created successfully.');
     }
 
     /**
