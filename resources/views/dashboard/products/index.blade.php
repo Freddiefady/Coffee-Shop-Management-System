@@ -14,8 +14,8 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-4 d-inline">Products</h5>
-                    <a class="btn btn-primary text-center float-right mb-3"
-                        href="{{ route('products.create') }}">Create Product</a>
+                    <a class="btn btn-primary text-center float-right mb-3" href="{{ route('products.create') }}">Create
+                        Product</a>
                     <table class="table">
                         <thead>
                             <tr>
@@ -32,18 +32,20 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $product->name }}</td>
-                                <td><img src="{{ asset('assets/images/'. $product->image) }}" alt="{{ $product->name }}" width="100" height="70"></td>
+                                <td><img src="{{ asset('assets/images/'. $product->image) }}" alt="{{ $product->name }}"
+                                        width="100" height="70"></td>
                                 <td>${{ $product->price }}</td>
                                 <td>{{ $product->type }}</td>
-                                {{-- <td><a href="{{ route('products.destroy', $product) }}" onclick="event.preventDefault();
-                                    document.getElementById('deleteOrder').submit();" class="btn btn-danger  text-center text-white">delete</a></td> --}}
+                                <td><a href="{{ route('products.destroy', $product->id) }}" onclick="event.preventDefault();
+                                    document.getElementById('deleteOrder-{{ $product->id }}').submit();"
+                                        class="btn btn-danger text-center text-white">delete</a></td>
                             </tr>
-                            @endforeach
-                            {{-- <form id="deleteOrder" method="POST"
-                                action="{{ route('products.destroy', $products) }}"  class="d-none">
+                            <form id="deleteOrder-{{ $product->id }}" method="POST"
+                                action="{{ route('products.destroy', $product->id) }}" class="d-none">
                                 @csrf
                                 @method('DELETE')
-                            </form> --}}
+                            </form>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

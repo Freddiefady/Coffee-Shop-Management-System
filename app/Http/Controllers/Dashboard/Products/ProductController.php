@@ -79,6 +79,15 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        // Delete image if exists
+        if ($product->image && Storage::exists('public/assets/images/' . $product->image)) {
+            Storage::delete('public/assets/images/' . $product->image);
+        }
+
+        $product->delete();
+
+        return redirect()->back()->with('success', 'Product deleted successfully.');
     }
 }
