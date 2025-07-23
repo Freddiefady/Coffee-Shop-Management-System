@@ -31,4 +31,4 @@ Route::resource('/admin/products', ProductController::class)
         ->only(['index', 'create', 'store', 'destroy']);
 
 Route::resource('/admin/booked-up', BookingController::class)
-        ->only(['index', 'update', 'destroy']);
+        ->only(['index', 'edit', 'update', 'destroy']);

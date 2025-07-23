@@ -19,6 +19,7 @@
                                 <th scope="col">phone</th>
                                 <th scope="col">message</th>
                                 <th scope="col">status</th>
+                                <th scope="col">change status</th>
                                 <th scope="col">created_at</th>
                                 <th scope="col">delete</th>
                             </tr>
@@ -34,6 +35,7 @@
                                 <td>{{ $booking->phone }}</td>
                                 <td>{{ $booking->message }}</td>
                                 <td>{{ $booking->status }}</td>
+                                <td><a href="{{ route('booked-up.edit', $booking) }}" class="btn btn-warning text-white text-center ">Change status</a></td>
                                 <td>{{ $booking->created_at }}</td>
                                 <td><a href="{{ route('booked-up.destroy', $booking->id) }}"
                                        onclick="event.preventDefault();
