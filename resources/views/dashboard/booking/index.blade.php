@@ -7,7 +7,14 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-4 d-inline">Bookings</h5>
-
+                    <div class="container">
+                        @if (session('success'))
+                        <div
+                            class="alert {{ session('success') ? 'alert-success' : 'alert-info' }} alert-dismissible fade show">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -35,12 +42,12 @@
                                 <td>{{ $booking->phone }}</td>
                                 <td>{{ $booking->message }}</td>
                                 <td>{{ $booking->status }}</td>
-                                <td><a href="{{ route('booked-up.edit', $booking) }}" class="btn btn-warning text-white text-center ">Change status</a></td>
+                                <td><a href="{{ route('booked-up.edit', $booking) }}"
+                                        class="btn btn-warning text-white text-center">Change status</a></td>
                                 <td>{{ $booking->created_at }}</td>
-                                <td><a href="{{ route('booked-up.destroy', $booking->id) }}"
-                                       onclick="event.preventDefault();
+                                <td><a href="{{ route('booked-up.destroy', $booking->id) }}" onclick="event.preventDefault();
                                         document.getElementById('deleteBooking-{{ $booking->id }}').submit();
-                                        class="btn btn-danger text-center text-white">delete</a></td>
+                                        class=" btn btn-danger text-center">delete</a></td>
                             </tr>
                             <form id="deleteBooking-{{ $booking->id }}" method="POST"
                                 action="{{ route('booked-up.destroy', $booking->id) }}" class="d-none">

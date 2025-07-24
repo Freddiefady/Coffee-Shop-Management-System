@@ -4,7 +4,7 @@ namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChangeStatusOrderRequest extends FormRequest
+class ChangeStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class ChangeStatusOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => 'required|in:pending,delivered,proccessing,cancelled',
+            'status' => 'required|in:pending,delivered,proccessing,booked,cancelled',
         ];
     }
 }

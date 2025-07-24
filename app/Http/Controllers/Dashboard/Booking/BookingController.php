@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Booking;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\ChangeStatusRequest;
 
 class BookingController extends Controller
 {
@@ -46,15 +47,18 @@ class BookingController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+        return view('dashboard.booking.edit', compact('booking'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ChangeStatusRequest $request, string $id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+        $booking->update($request->validated());
+        return redirect()->route('booked-up.index')->with('success', 'Booking updated successfully.');
     }
 
     /**
