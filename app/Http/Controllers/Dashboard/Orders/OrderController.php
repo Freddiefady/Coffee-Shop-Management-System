@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard\Orders;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Dashboard\ChangeStatusOrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\ChangeStatusRequest;
 
 class OrderController extends Controller
 {
@@ -53,7 +53,7 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ChangeStatusOrderRequest $request, Order $order)
+    public function update(ChangeStatusRequest $request, Order $order)
     {
         $order->update($request->validated());
         return redirect()->route('orders.index')
